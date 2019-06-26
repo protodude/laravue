@@ -35,15 +35,35 @@
 
 ### Installing
 ```bash
-# Clone the project and run composer
-composer create-project tuandm/laravue
+# Create a new project folder and
+# Clone the project
+git clone https://github.com/tuandm/laravue.git
+
+#Install packages
 cd laravue
+composer install
+
+# Prepare .env file
+create a new database 
+# populate .env file with database information 
+
+# Bugfix Laravel -> open AppServiceProvider.php file
+# add the following
+use Illuminate\Support\Facades\Schema;
+
+public function boot()
+{
+    Schema::defaultStringLength(191);
+}
 
 # Migration and DB seeder (after changing your DB settings in .env)
 php artisan migrate --seed
 
 # Generate JWT secret key
 php artisan jwt:secret
+
+# Generate application key
+php artisan key:generate
 
 # install dependency
 npm install
